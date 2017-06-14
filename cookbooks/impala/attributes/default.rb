@@ -4,7 +4,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-username = ''
+username = 'systest'
 
 # User options
 default['impala_dev']['username'] = username
@@ -31,6 +31,9 @@ case
     default['postgresql']['config']['external_pid_file'] =  "/var/run/postgresql/#{default['postgresql']['version']}-main.pid"
   when (node['platform_family'] == "debian" and node['platform_version'] == "14.04")
     default['postgresql']['version'] = "9.3"
+  when (node['platform_family'] == "rhel" and node['platform_version'] == "6.7")
+    default['postgresql']['version'] = "8.4"
+    default['postgresql']['config']['hba_file'] =           "/var/lib/pgsql/#{default['postgresql']['version']}/data/pg_hba.conf"
 end
 
 default['postgresql']['pg_hba'] = [{:type => 'local', :db => 'all', :user => 'postgres', :addr => nil, :method => 'trust'},

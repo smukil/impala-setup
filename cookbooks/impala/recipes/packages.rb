@@ -23,6 +23,16 @@ when "debian"
       package pkg
     end
   end
+when "rhel"
+  Chef::Log.info('RHEL family')
+  packages = ["gcc-c++", "gcc", "git", "cyrus-sasl-devel", "cyrus-sasl-gssapi",
+        "cyrus-sasl-plain", "make", "apache-maven", "python-devel", "python-setuptools",
+        "lzo-devel", "krb5-server", "krb5-workstation", "libffi-devel","wget",
+        "openssl-devel", "ant", "vim"]
+  # Leaving out ccache, tmux, ninja-build, emacs24-nox
+  packages.each do |pkg|
+    package pkg
+  end
 end
 
 # Python packages

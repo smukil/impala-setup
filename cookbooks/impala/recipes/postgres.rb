@@ -14,6 +14,8 @@ end
 
 bash 'setup_pg_roles' do
   user 'postgres'
+  Chef::Log.info("FILE IS HERE")
+  Chef::Log.info(node['postgresql']['config']['hba_file'])
   code <<-EOH
   psql -c "CREATE ROLE hiveuser LOGIN PASSWORD 'password';" postgres || true
   psql -c "ALTER ROLE hiveuser WITH CREATEDB;" postgres || true
