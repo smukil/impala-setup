@@ -10,7 +10,13 @@
 #
 
 # Create an .ssh directory and generate ssh keys if they don't exist
-directory "/home/#{node['impala_dev']['username']}/.ssh" do
+bash 'find_home_dir' do
+  find_dir_cmd = "getent passwd #{node['impala_dev']['username']} | cut -d: -f6"
+  find_dir_cmd_out = shell_out(find_dir_cmd)
+  node.set['user_home_dir'] = find_dir_cmd_out
+end
+
+directory "#{node['user_home_dir']}/.ssh" do
   owner node['impala_dev']['username']
   group node['impala_dev']['username']
   action :create

@@ -4,15 +4,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
-username = ''
+username = 'dev'
 
 # User options 
 default['impala_dev']['username'] = username
 
 # Java options
-default['java']['install_flavor'] = 'oracle'
+#default['java']['install_flavor'] = 'oracle'
+#default['java']['oracle']['accept_oracle_download_terms'] = true
 default['java']['jdk_version'] = '7'
-default['java']['oracle']['accept_oracle_download_terms'] = true
+default['java']['home'] = '/usr/lib/jvm/java-7-openjdk-amd64'
 
 # Postgres options
 case 
