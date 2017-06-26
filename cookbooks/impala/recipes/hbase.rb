@@ -11,7 +11,7 @@
 bash 'setup_hbase_ssh' do
   user node['impala_dev']['username']
   code <<-EOH
-  cd /home/#{node['impala_dev']['username']}
+  cd #{node['user_home_dir']}
   cat .ssh/id_rsa.pub >> .ssh/authorized_keys
   chmod 600 .ssh/authorized_keys 
   ssh-keyscan -H github.com >> .ssh/known_hosts

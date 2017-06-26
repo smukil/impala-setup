@@ -14,6 +14,6 @@ bash 'install_dita-ot' do
   sudo cp -r dita-ot-2.3.3 /opt/
   cd /
   rm -rf "${UNZIP_LOCATION}"
-  echo 'PATH=/opt/dita-ot-2.3.3/bin:"${PATH}"' >> /home/#{node['impala_dev']['username']}/.bashrc
+  echo 'PATH=/opt/dita-ot-2.3.3/bin:"${PATH}"' >> #{node['user_home_dir']}/.bashrc
   EOF
 end

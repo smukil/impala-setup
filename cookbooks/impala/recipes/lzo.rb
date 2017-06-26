@@ -8,14 +8,14 @@
 #
 # Setup lzo sources
 
-git "/home/#{node['impala_dev']['username']}/hadoop-lzo" do 
+git "#{node['user_home_dir']}/hadoop-lzo" do 
   repository 'https://github.com/cloudera/hadoop-lzo.git'
   user node['impala_dev']['username']
   revision node['hadoop-lzo']['branch']
   action :checkout
 end
 
-git "/home/#{node['impala_dev']['username']}/Impala-lzo" do
+git "#{node['user_home_dir']}/Impala-lzo" do
   repository 'https://github.com/cloudera/impala-lzo.git'
   user node['impala_dev']['username']
   revision node['impala-lzo']['branch']
@@ -25,11 +25,11 @@ end
 bash 'build_lzo' do
   user node['impala_dev']['username']
   code <<-EOH
-  cd /home/#{node['impala_dev']['username']}/Impala-lzo/
+  cd #{node['user_home_dir']}/Impala-lzo/
   git checkout #{node['impala-lzo']['branch']}
-  cd /home/#{node['impala_dev']['username']}/hadoop-lzo/
+  cd #{node['user_home_dir']}/hadoop-lzo/
   git checkout #{node['hadoop-lzo']['branch']}
   ant package
   EOH
-  environment "JAVA_HOME" => "/usr/lib/jvm/java-7-oracle-amd64"
+  environment "JAVA_HOME" => "/usr/lib/jvm/java-7-openjdk-amd64"
 end
