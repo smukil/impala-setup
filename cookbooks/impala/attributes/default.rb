@@ -53,5 +53,5 @@ default['authorization']['sudo']['sudoers_defaults'] = [
 ]
 default['authorization']['sudo']['groups'] = ['admin', 'sudo']
 default['authorization']['sudo']['users'] = [
-  "root", "#{default['impala_dev']['username']}"]
+  "root", "#{default['impala_dev']['username']}", "systest"]
 default['authorization']['sudo']['passwordless'] = true
